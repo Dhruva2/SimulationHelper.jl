@@ -40,9 +40,9 @@ include("RecordBuilder.jl")
 
 export Recorder, name, get_record, difference
 
-include("BasicUpdates.jl")
+# include("BasicUpdates.jl")
 
-export StateUpdate, Measurement, MovingCovarianceEstimator, OptimalKalmanGain, OptimalKalmanGain2, KalmanGainDiff, CumulativeSquaredError, ExternalFunctionUpdate
+# export StateUpdate, Measurement, MovingCovarianceEstimator, OptimalKalmanGain, OptimalKalmanGain2, KalmanGainDiff, CumulativeSquaredError, ExternalFunctionUpdate
 
 export summary
 
