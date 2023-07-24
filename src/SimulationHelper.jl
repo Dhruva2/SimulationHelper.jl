@@ -53,7 +53,7 @@ include("Particles.jl")
 
 export Particle, ParticleCollection, ParticleWeightUpdate, Resampler, SystematicResampler
 
-export states, weights
+export states, weights, resampled
 # export collection_average, collection_variance, get_particle_updates
 
 include("SimulationStatistics.jl")
