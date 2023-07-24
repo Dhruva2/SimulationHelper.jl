@@ -10,6 +10,10 @@ mutable struct Measurement{L} <: Interaction
     last::L
 end
 
+observation() = nothing
+state() = nothing
+
+
 StateUpdate(env::Entity) = StateUpdate(env |> state)
 Measurement(env::Entity) = Measurement(env |> observation)
 
