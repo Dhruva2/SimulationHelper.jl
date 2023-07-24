@@ -11,6 +11,7 @@ struct InteractionSpecification{I<:Interaction,S,T,N<:Function} <: Specification
     record_what::N
 end
 
+record_nothing(::Any) = nothing
 
 struct ObservationSpecification{I<:Thing,T,N<:Function} <: Specification
     of_what::I
@@ -22,8 +23,8 @@ ObservationSpecification(i::Interaction, times, what) = InteractionSpecification
 Record(t::Thing, times, what) = ObservationSpecification(t, times, what)
 
 ### IE if you don't want to record, use the pair syntax
-Base.Pair(i::Interaction, t) = InteractionSpecification(i, t, empty(t), summary) #update don't record
-Base.Pair(e::Entity, t) = ObservationSpecification(e, t, summary)
+Base.Pair(i::Interaction, t) = InteractionSpecification(i, t, empty(t), record_nothing) #update don't record
+Base.Pair(e::Entity, t) = ObservationSpecification(e, t, record_nothing)
 
 Record(os::ObservationSpecification, what) = ObservationSpecification(
     os.of_what,
@@ -38,7 +39,6 @@ Record(is::InteractionSpecification, t, what::Function) = InteractionSpecificati
     t,
     what
 )
-Record(is::InteractionSpecification, t) = Record(is, t, summary)
 Record(is::InteractionSpecification, t, what::Symbol) = Record(is, t, r -> getfield(r, what))
 
 Record(is::InteractionSpecification, what::Function) = InteractionSpecification(
@@ -69,7 +69,6 @@ nb this == is a bit misleading, but useful for subsequent code. Interaction Spec
 ==(i1::Specification, i2::Specification) = (==(i1.of_what, i2.of_what)) && ==(i1.record_what, i2.record_what)
 
 
-summary(i::Interaction) = i
 
 
 

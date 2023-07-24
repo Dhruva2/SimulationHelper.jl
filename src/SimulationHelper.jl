@@ -40,24 +40,7 @@ include("RecordBuilder.jl")
 
 export Recorder, name, get_record, difference
 
-# include("BasicUpdates.jl")
-
-# export StateUpdate, Measurement, MovingCovarianceEstimator, OptimalKalmanGain, OptimalKalmanGain2, KalmanGainDiff, CumulativeSquaredError, ExternalFunctionUpdate
-
-export summary
-
 include("PlotBuilder.jl")
 
-
-include("Particles.jl")
-
-export Particle, ParticleCollection, ParticleWeightUpdate, Resampler, SystematicResampler
-
-export states, weights, resampled
-# export collection_average, collection_variance, get_particle_updates
-
-include("SimulationStatistics.jl")
-
-# export do_repeats, param_against_difference, param_against_summary, param_against_summary_repeated, 
 
 end
