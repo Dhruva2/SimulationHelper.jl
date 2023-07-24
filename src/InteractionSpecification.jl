@@ -59,7 +59,6 @@ requirement calculus
 """
 requirements(s::Specification) = requirements(s.of_what)
 requirements(i::Interaction) = ()
-requirements(t::Thing) = ()
 
 my_time(is::InteractionSpecification) = time(is.of_what)
 my_time(i::Interaction) = i.time
