@@ -83,25 +83,25 @@ function Base.getindex(c::CompositeRecord, i::Integer)
     return c.records[i]  # Access the underlying array and return the indexed element
 end
 
-function Base.getindex(s::SimpleRecorder, t::Integer)
+function (s::SimpleRecorder)(t::Integer)
     indx = findfirst(isequal(t), recording_times(s))
     isnothing(indx) && error("no record at that time!")
-    s.summary[indx]
+    return s.summary[indx]
 end
 
-function Base.getindex(s::SimpleRecorder, r::AbstractRange)
-    return [s[el] for el in r]
-end
-
-
-function (s::SimpleRecorder)(t::Integer) 
-
+function (s::SimpleRecorder)(r::AbstractRange)
+    indices = findall(x -> x in r, recording_times(s))
+    return s.summary[indices]
 end
 
 
-function compose_updates(updates) 
-    all = map(updates) do ru
-        ru() 
+
+
+
+
+function compose_updates(updates, types::Vector{D}) where D<:DataType 
+    all = map(zip(updates, types)) do (ru, type)
+        ru(;data_type=type) 
     end
     updates = first.(all)
     recorders=last.(all)
@@ -112,6 +112,11 @@ function compose_updates(updates)
         end
     end
     return composite_update!, CompositeRecord(recorders)
+end
+
+function compose_updates(updates)
+    t = repeat([Any], length(updates))
+    compose_updates(updates, t)
 end
 
 
