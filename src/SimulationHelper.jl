@@ -1,15 +1,11 @@
 """
-Notes:
 
-renamed time(::Interaction) and time(::InteractionSpecification) as _time
+- You can record an interaction or an entity
+ Requirements
 
-exported Base.Pair
+ interactions have a functor:
 
-not importing/exporting Base.==  as it will only be used internally in the module
-
-might need 
-import Base.getindex
-
+ int(time, to_whom, args, kwargs)
 
 """
 
@@ -19,28 +15,14 @@ module SimulationHelper
 using Statistics
 using LinearAlgebra, Distributions, Random
 
-include("typetree.jl")
-export Thing, Entity, Interaction, Specification, AbstractRecorder
-
-requirements(::Thing) = ()
-name(T::Thing) = nameof(T |> typeof)
+using LinearAlgebra, Distributions, Random
+import Base.getindex, Base.show
 
 
-import Base.Pair, Base.show #I'm a type pirate
 
-include("InteractionSpecification.jl")
 
-export InteractionSpecification, ObservationSpecification, Record
-
-export requirements
-
-include("UpdateBuilder.jl")
-
-include("RecordBuilder.jl")
-
-export Recorder, name, get_record, difference
-
-include("PlotBuilder.jl")
+include("SimpleInteraction.jl")
+export RecordedUpdate, SimpleRecorder, CompositeRecord, compose_updates
 
 
 end
