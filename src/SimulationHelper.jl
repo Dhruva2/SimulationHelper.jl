@@ -11,11 +11,6 @@
 
 module SimulationHelper
 
-# Write your package code here.
-using Statistics
-using LinearAlgebra, Distributions, Random
-
-using LinearAlgebra, Distributions, Random
 import Base.getindex, Base.show
 
 
