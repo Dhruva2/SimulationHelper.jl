@@ -1,7 +1,14 @@
 name = "SimulationHelper"
 uuid = "e250a342-baca-463d-b6ad-e18d1b037a83"
 authors = ["Dhruva V. Raman", "University of Sussex"]
-version = "0.2.1"
+version = "0.2.2"
 
 [compat]
 julia = "1.9"
+
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"] 
