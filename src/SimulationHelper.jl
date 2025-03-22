@@ -17,7 +17,7 @@ import Base.getindex, Base.show
 
 
 include("SimpleInteraction.jl")
-export RecordedUpdate, SimpleRecorder, CompositeRecord, compose_updates, recording_times, recording_function
+export RecordedUpdate, SimpleRecorder, CompositeRecord, compose_updates, recording_times, recording_function, name
 
 
 end
