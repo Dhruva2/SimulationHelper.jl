@@ -16,6 +16,15 @@ struct RecordedUpdate{F<:Function,S,T,N<:Function} <: AbstractUpdate
     name::Symbol
 end
 
+function RecordedOnly(record_what, times_to_record, name)
+    return RecordedUpdate(
+        () -> (),
+        0:0,
+        times_to_record,
+        record_what,
+        name)
+end
+
 mutable struct SimpleRecorder{S} <: AbstractRecorder
     summary::Vector{S}
     ru::RecordedUpdate
